@@ -26,6 +26,8 @@ app.post('/api/sync-stock', async (req, res) => {
   try {
     const stockItems = req.body;
 
+    console.log('📥 Stock recibido:', stockItems); // 👈 MOSTRAR LO QUE LLEGA
+
     const batch = db.batch();
 
     stockItems.forEach(item => {
@@ -37,10 +39,11 @@ app.post('/api/sync-stock', async (req, res) => {
 
     res.status(200).json({ message: '✅ Stock sincronizado correctamente' });
   } catch (error) {
-    console.error('❌ Error al sincronizar stock:', error);
+    console.error('❌ Error al sincronizar stock:', error); // 👈 IMPRIME ERROR COMPLETO
     res.status(500).json({ error: 'Ocurrió un error al sincronizar el stock' });
   }
 });
+
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3000;
