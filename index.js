@@ -4,12 +4,12 @@ const admin = require('firebase-admin');
 const app = express();
 
 // 👇 Carga del archivo de credenciales descargado desde Firebase
-const serviceAccount = require('./serviceAccountKey.json');
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_JSON);
 
-// 👇 Inicializar Firebase Admin SDK
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
+
 
 const db = admin.firestore();
 
