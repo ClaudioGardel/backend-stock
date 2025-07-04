@@ -6,8 +6,10 @@ const app = express();
 // 👇 Carga del archivo de credenciales descargado desde Firebase
 const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_JSON);
 
+raw.private_key = raw.private_key.replace(/\\n/g, '\n');
+
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(raw),
 });
 
 
